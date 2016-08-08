@@ -11,7 +11,7 @@ public class CAM_Pivot : CAM_Follow
 	protected virtual void Awake()
 	{
 		cam = Camera.main.transform;
-		pivot = cam.parent;
+		pivot = cam.parent.parent.parent;
 	}
 
 	protected override void Start() 

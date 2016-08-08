@@ -44,9 +44,6 @@ public class CAM_CameraLook : CAM_Pivot
 
 		base.Awake();
 
-		cam = Camera.main.transform;
-		pivot = cam.parent.parent;
-
 		trans = GetComponent<Transform>();
 	}
 

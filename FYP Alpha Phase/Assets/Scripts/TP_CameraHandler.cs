@@ -50,7 +50,7 @@ public class TP_CameraHandler : MonoBehaviour
 		//chManager = CAM_CrosshairManager.GetInstance();
 		camPivot = camProperties.transform.GetChild(0);
 		camTrans = camPivot.GetChild(0);
-		camShake = camPivot.GetComponentInChildren<CAM_CameraShake>();
+		camShake = camTrans.GetChild(0).GetComponent<CAM_CameraShake>();
 
 		layerMask = ~(1 << gameObject.layer); // Everything, except player lol
 		states.layerMask = layerMask;

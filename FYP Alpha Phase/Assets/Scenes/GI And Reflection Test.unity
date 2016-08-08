@@ -23,9 +23,9 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 0
   m_AmbientMode: 0
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 43143795a9feac245aca6600afe93891, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -34,39 +34,41 @@ RenderSettings:
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
   m_ReflectionBounces: 1
-  m_ReflectionIntensity: 1
+  m_ReflectionIntensity: 0
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 265732871}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 6
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_LightmapsMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
-    m_IndirectOutputScale: 1
-    m_AlbedoBoost: 1
+    m_IndirectOutputScale: 2
+    m_AlbedoBoost: 4
     m_TemporalCoherenceThreshold: 1
-    m_EnvironmentLightingMode: 0
+    m_EnvironmentLightingMode: 1
     m_EnableBakedLightmaps: 1
-    m_EnableRealtimeLightmaps: 1
+    m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
     serializedVersion: 3
-    m_Resolution: 2
+    m_Resolution: 8
     m_BakeResolution: 40
-    m_TextureWidth: 1024
+    m_TextureWidth: 4096
     m_TextureHeight: 1024
-    m_AOMaxDistance: 1
-    m_Padding: 2
-    m_CompAOExponent: 0
-    m_LightmapParameters: {fileID: 0}
-    m_TextureCompression: 1
+    m_AOMaxDistance: 64
+    m_Padding: 8
+    m_CompAOExponent: 1
+    m_LightmapParameters: {fileID: 15203, guid: 0000000000000000f000000000000000,
+      type: 0}
+    m_TextureCompression: 0
     m_FinalGather: 0
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000001, guid: 3237b7085a18ae94299af425d8a83391,
+    type: 2}
   m_RuntimeCPUUsage: 25
 --- !u!196 &4
 NavMeshSettings:
@@ -136,6 +138,10 @@ Prefab:
       propertyPath: m_Name
       value: FlowerBlock01 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 986d705b787253f449196b7504a160ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 986d705b787253f449196b7504a160ad, type: 3}
   m_IsPrefabParent: 0
@@ -187,8 +193,8 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 4
-  m_BounceIntensity: 1
+  m_Lightmapping: 2
+  m_BounceIntensity: 2
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
@@ -198,10 +204,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 265732870}
-  m_LocalRotation: {x: 0.3723848, y: -0.42855665, z: 0.19983923, w: 0.7985819}
-  m_LocalPosition: {x: 0, y: 15.26, z: 0}
+  m_LocalRotation: {x: -0.36599824, y: 0.45315373, z: -0.21130908, w: -0.78488564}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 50, y: -56.440197, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: 300, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -243,6 +249,10 @@ Prefab:
     - target: {fileID: 400000, guid: 5daeefff25c99ab45893dff3befc8db4, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5daeefff25c99ab45893dff3befc8db4, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5daeefff25c99ab45893dff3befc8db4, type: 3}
@@ -351,7 +361,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &438787679
 Transform:
@@ -417,6 +427,10 @@ Prefab:
       propertyPath: m_Name
       value: Blocker01 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: aa4ed5fb95dd7b848ae7d8782f334989, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa4ed5fb95dd7b848ae7d8782f334989, type: 3}
   m_IsPrefabParent: 0
@@ -462,6 +476,10 @@ Prefab:
     - target: {fileID: 400000, guid: aa4ed5fb95dd7b848ae7d8782f334989, type: 3}
       propertyPath: m_RootOrder
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: aa4ed5fb95dd7b848ae7d8782f334989, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa4ed5fb95dd7b848ae7d8782f334989, type: 3}
@@ -521,6 +539,10 @@ Prefab:
       propertyPath: m_Name
       value: FlowerBlock01 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 986d705b787253f449196b7504a160ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 986d705b787253f449196b7504a160ad, type: 3}
   m_IsPrefabParent: 0
@@ -541,7 +563,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &788883649
 Transform:
@@ -601,6 +623,10 @@ Prefab:
     - target: {fileID: 100000, guid: aa4ed5fb95dd7b848ae7d8782f334989, type: 3}
       propertyPath: m_Name
       value: Blocker01 (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: aa4ed5fb95dd7b848ae7d8782f334989, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa4ed5fb95dd7b848ae7d8782f334989, type: 3}
@@ -664,6 +690,10 @@ Prefab:
       propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 986d705b787253f449196b7504a160ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 986d705b787253f449196b7504a160ad, type: 3}
   m_IsPrefabParent: 0
@@ -714,6 +744,10 @@ Prefab:
       propertyPath: m_Name
       value: Blocker01 (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: aa4ed5fb95dd7b848ae7d8782f334989, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa4ed5fb95dd7b848ae7d8782f334989, type: 3}
   m_IsPrefabParent: 0
@@ -734,7 +768,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1059303622
 Transform:
@@ -794,6 +828,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 94b3a19e6f3a9774cb682d04390ec5f7, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 94b3a19e6f3a9774cb682d04390ec5f7, type: 3}
   m_IsPrefabParent: 0
@@ -839,6 +877,14 @@ Prefab:
     - target: {fileID: 400000, guid: cb06966fdd8fbfd4ba1cd33f6b1d33a0, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: cb06966fdd8fbfd4ba1cd33f6b1d33a0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: cb06966fdd8fbfd4ba1cd33f6b1d33a0, type: 3}
+      propertyPath: m_PreserveUVs
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb06966fdd8fbfd4ba1cd33f6b1d33a0, type: 3}
@@ -894,6 +940,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.x
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 986d705b787253f449196b7504a160ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 986d705b787253f449196b7504a160ad, type: 3}
   m_IsPrefabParent: 0
@@ -914,7 +964,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1602616126
 Transform:
@@ -973,6 +1023,10 @@ Prefab:
       propertyPath: m_Name
       value: Blocker01 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: aa4ed5fb95dd7b848ae7d8782f334989, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa4ed5fb95dd7b848ae7d8782f334989, type: 3}
   m_IsPrefabParent: 0
@@ -1022,6 +1076,10 @@ Prefab:
     - target: {fileID: 100000, guid: aa4ed5fb95dd7b848ae7d8782f334989, type: 3}
       propertyPath: m_Name
       value: Blocker01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: aa4ed5fb95dd7b848ae7d8782f334989, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa4ed5fb95dd7b848ae7d8782f334989, type: 3}
@@ -1081,6 +1139,10 @@ Prefab:
       propertyPath: m_Name
       value: FlowerBlock01 (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 986d705b787253f449196b7504a160ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 986d705b787253f449196b7504a160ad, type: 3}
   m_IsPrefabParent: 0
@@ -1131,6 +1193,10 @@ Prefab:
       propertyPath: m_Name
       value: Blocker01 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: aa4ed5fb95dd7b848ae7d8782f334989, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa4ed5fb95dd7b848ae7d8782f334989, type: 3}
   m_IsPrefabParent: 0
@@ -1180,6 +1246,10 @@ Prefab:
     - target: {fileID: 100000, guid: aa4ed5fb95dd7b848ae7d8782f334989, type: 3}
       propertyPath: m_Name
       value: Blocker01 (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: aa4ed5fb95dd7b848ae7d8782f334989, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa4ed5fb95dd7b848ae7d8782f334989, type: 3}
@@ -1243,6 +1313,10 @@ Prefab:
       propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 986d705b787253f449196b7504a160ad, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 986d705b787253f449196b7504a160ad, type: 3}
   m_IsPrefabParent: 0
@@ -1288,6 +1362,10 @@ Prefab:
     - target: {fileID: 400000, guid: c9c4418a61c1ab247bcd8299f7011c84, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c9c4418a61c1ab247bcd8299f7011c84, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c9c4418a61c1ab247bcd8299f7011c84, type: 3}

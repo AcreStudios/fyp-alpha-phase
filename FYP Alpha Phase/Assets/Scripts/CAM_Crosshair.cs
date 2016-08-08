@@ -98,7 +98,6 @@ public class CAM_Crosshair : MonoBehaviour
 			else // if(spreadT > 1)
 				ChangeCursorSpread(defaultSpread);
 
-
 			currentSpread = spreadValue;
 			ApplySpread();
 		} // if(isSpreadWorking)

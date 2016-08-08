@@ -14,6 +14,7 @@ public class TP_StatesHandler : MonoBehaviour
 
 	[HideInInspector]
 	public Vector3 lookPosition, lookHitPosition;
+	[HideInInspector]
 	public LayerMask layerMask;
 
 	private Transform trans;
