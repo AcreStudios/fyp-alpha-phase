@@ -20,20 +20,20 @@ public class TP_StatesHandler : MonoBehaviour
 	private Transform trans;
 	private TP_InputsHandler inputs;
 	[HideInInspector]
-	public TP_ShootingHandler shooting;
+	public TP_ShootingHandler shootingHandler;
 	//[HideInInspector]
 	//public TP_AnimationsHandler anims;
 
-	//public TP_AudioHandler audio;
+	//public TP_AudioHandler audioHandler;
 
 	void Awake()
 	{
 		trans = GetComponent<Transform>();
 		inputs = GetComponent<TP_InputsHandler>();
 
-		shooting = GetComponent<TP_ShootingHandler>();
+		shootingHandler = GetComponent<TP_ShootingHandler>();
 		//anims = GetComponent<TP_AnimationsHandler>();
-		//audio = GetComponent<TP_AudioHandler>();
+		//audioHandler = GetComponent<TP_AudioHandler>();
 	}
 
 	void FixedUpdate() 

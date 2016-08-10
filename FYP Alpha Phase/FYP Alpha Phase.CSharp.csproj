@@ -69,12 +69,16 @@
     <Compile Include="Assets\Scripts\CAM_CrosshairManager.cs" />
     <Compile Include="Assets\Scripts\CAM_Follow.cs" />
     <Compile Include="Assets\Scripts\CAM_Pivot.cs" />
+    <Compile Include="Assets\Scripts\IMG_DisplacementShader.cs" />
     <Compile Include="Assets\Scripts\TP_CameraHandler.cs" />
     <Compile Include="Assets\Scripts\TP_InputsHandler.cs" />
     <Compile Include="Assets\Scripts\TP_MovementHandler.cs" />
     <Compile Include="Assets\Scripts\TP_ShootingHandler.cs" />
     <Compile Include="Assets\Scripts\TP_StatesHandler.cs" />
     <Compile Include="Assets\Scripts\_Perlin.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Shaders\Animated Displacement.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

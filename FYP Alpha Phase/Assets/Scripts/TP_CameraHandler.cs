@@ -91,7 +91,7 @@ public class TP_CameraHandler : MonoBehaviour
 
 	void HandleCameraShake()
 	{
-		if(states.shooting && states.shooting.currentBullets > 0)
+		if(states.shootingHandler && states.shootingHandler.currentBullets > 0)
 		{
 			targetShake = shakeRecoil;
 			camProperties.WiggleCrosshairAndCamera(.2f);
