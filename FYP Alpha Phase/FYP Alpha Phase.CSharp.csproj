@@ -18,7 +18,6 @@
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.3.5f1</UnityVersion>
     <RootNamespace></RootNamespace>
-    <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -76,6 +75,7 @@
     <Compile Include="Assets\Scripts\CAM_CameraShake.cs" />
     <Compile Include="Assets\Scripts\CAM_Crosshair.cs" />
     <Compile Include="Assets\Scripts\CAM_CrosshairManager.cs" />
+    <Compile Include="Assets\Scripts\CAM_Flythrough.cs" />
     <Compile Include="Assets\Scripts\CAM_Follow.cs" />
     <Compile Include="Assets\Scripts\CAM_Pivot.cs" />
     <Compile Include="Assets\Scripts\IMG_DisplacementShader.cs" />
