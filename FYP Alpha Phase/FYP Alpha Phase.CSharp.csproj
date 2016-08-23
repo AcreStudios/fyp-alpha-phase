@@ -72,7 +72,7 @@
     <Compile Include="Assets\Menu\Scripts\Killurself.cs" />
     <Compile Include="Assets\Menu\Scripts\MenuScript.cs" />
     <Compile Include="Assets\Menu\Scripts\VideoScript.cs" />
-    <Compile Include="Assets\Scripts\CAM_Flythrough.cs" />
+    <Compile Include="Assets\_Scripts\CAM_Flythrough.cs" />
     <Compile Include="Assets\_Scripts\Old\CAM_CameraLook.cs" />
     <Compile Include="Assets\_Scripts\Old\CAM_CameraShake.cs" />
     <Compile Include="Assets\_Scripts\Old\CAM_Crosshair.cs" />
