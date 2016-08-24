@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FYP Alpha Phase.CSharp.Plugins", "FYP Alpha Phase.CSharp.Plugins.csproj", "{D96CCCF2-F1DF-B2F4-E200-8909DC88B3DC}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FYP Alpha Phase.CSharp", "FYP Alpha Phase.CSharp.csproj", "{591E1CEC-7C3F-15F6-BDE2-0E3362737CC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FYP Alpha Phase.CSharp.Editor.Plugins", "FYP Alpha Phase.CSharp.Editor.Plugins.csproj", "{D2B6B3A8-6EFE-E9CD-F265-7317FAF9141B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FYP Alpha Phase.CSharp.Editor", "FYP Alpha Phase.CSharp.Editor.csproj", "{4D17AE40-1D88-78B4-3BFE-AECD7ECB209C}"
 EndProject
@@ -11,10 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D96CCCF2-F1DF-B2F4-E200-8909DC88B3DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D96CCCF2-F1DF-B2F4-E200-8909DC88B3DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D96CCCF2-F1DF-B2F4-E200-8909DC88B3DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D96CCCF2-F1DF-B2F4-E200-8909DC88B3DC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{591E1CEC-7C3F-15F6-BDE2-0E3362737CC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{591E1CEC-7C3F-15F6-BDE2-0E3362737CC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{591E1CEC-7C3F-15F6-BDE2-0E3362737CC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{591E1CEC-7C3F-15F6-BDE2-0E3362737CC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2B6B3A8-6EFE-E9CD-F265-7317FAF9141B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2B6B3A8-6EFE-E9CD-F265-7317FAF9141B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2B6B3A8-6EFE-E9CD-F265-7317FAF9141B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2B6B3A8-6EFE-E9CD-F265-7317FAF9141B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4D17AE40-1D88-78B4-3BFE-AECD7ECB209C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4D17AE40-1D88-78B4-3BFE-AECD7ECB209C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D17AE40-1D88-78B4-3BFE-AECD7ECB209C}.Release|Any CPU.ActiveCfg = Release|Any CPU

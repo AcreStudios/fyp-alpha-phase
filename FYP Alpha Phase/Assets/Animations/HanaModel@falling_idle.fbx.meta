@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: b1ee87621e32c4f448d231b8036b21f4
-timeCreated: 1471948916
+guid: f713b2e95e194f84886f4d048bf4b521
+timeCreated: 1472023693
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -141,7 +141,7 @@ ModelImporter:
     400130: mixamorig:Spine
     400132: mixamorig:Spine1
     400134: mixamorig:Spine2
-    7400000: standard_walk
+    7400000: falling_idle
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -168,10 +168,10 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: standard_walk
+      name: falling_idle
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 29
+      lastFrame: 21
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
