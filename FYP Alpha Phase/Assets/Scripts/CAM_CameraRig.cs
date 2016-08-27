@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 
-[ExecuteInEditMode]
 public class CAM_CameraRig : MonoBehaviour 
 {
 	// Components
@@ -22,6 +21,7 @@ public class CAM_CameraRig : MonoBehaviour
 		public float maxAngle = 70f;
 		public float cameraRotateSpeed = 5f;
 		public float cameraMoveSpeed = 5f;
+		public bool invertY = true;
 
 		[Header("-Aiming-")]
 		public float defaultFOV = 70f;
@@ -30,7 +30,13 @@ public class CAM_CameraRig : MonoBehaviour
 
 		[Header("-Visual Options-")]
 		public float wallCheckDist = .1f;
-		public float hideMeshWhenDistance = .5f;	
+		public float hideMeshWhenDistance = .5f;
+		[HideInInspector]
+		public SkinnedMeshRenderer[] meshes;
+
+		[Header("-All Cameras")]
+		public Camera mainCam;
+		public Camera UICam;
 	}
 	[SerializeField]
 	public CameraSettings cameraSettings;
@@ -54,7 +60,6 @@ public class CAM_CameraRig : MonoBehaviour
 
 	private Transform pivot;
 	private Transform camTrans;
-	private Camera mainCam;
 	private float newX = 0f, newY = 0f;
 
 	private void Awake()
@@ -64,12 +69,16 @@ public class CAM_CameraRig : MonoBehaviour
 
 		pivot = trans.GetChild(0); // Parent it to Trans_CamPivot
 		camTrans = pivot.GetChild(0);
-		mainCam = Camera.main;
+		SetupMainCamera();
 	}
 
 	private void Start() 
 	{
-		PrePositionMainCamera();
+		// Get meshes from target
+		TargetPlayer();
+
+		if(target)
+			cameraSettings.meshes = target.GetComponentsInChildren<SkinnedMeshRenderer>();
 	}
 
 	private void Update() 
@@ -126,7 +135,10 @@ public class CAM_CameraRig : MonoBehaviour
 	{
 		// Get mouse movement
 		newX += cameraSettings.mouseSensitivityX * Input.GetAxis(inputSettings.xAxis);
-		newY += cameraSettings.mouseSensitivityY * Input.GetAxis(inputSettings.yAxis);
+		if(cameraSettings.invertY)
+			newY += cameraSettings.mouseSensitivityY * Input.GetAxis(inputSettings.yAxis) * -1f;
+		else
+			newY += cameraSettings.mouseSensitivityY * Input.GetAxis(inputSettings.yAxis);
 
 		// Clamping
 		newX = Mathf.Repeat(newX, 360f);
@@ -183,18 +195,17 @@ public class CAM_CameraRig : MonoBehaviour
 
 	private void CheckMeshDistance() // Hide the meshes if within distance
 	{
-		if(!mainCam || !target)
+		if(!cameraSettings.mainCam || !target || cameraSettings.meshes.Length > 1)
 			return;
 
-		SkinnedMeshRenderer[] meshes = target.GetComponentsInChildren<SkinnedMeshRenderer>();
 		Transform mainCamTrans = camTrans;
 		Vector3 mainCamPos = mainCamTrans.position;
 		Vector3 targetPos = target.position;
 		float dist = Vector3.Distance(mainCamPos, (targetPos + target.up));
 	
-		if(meshes.Length > 0)
+		if(cameraSettings.meshes.Length > 0)
 		{
-			foreach(SkinnedMeshRenderer rend in meshes)
+			foreach(SkinnedMeshRenderer rend in cameraSettings.meshes)
 			{
 				if(dist < cameraSettings.hideMeshWhenDistance)
 					rend.enabled = false;
@@ -208,13 +219,19 @@ public class CAM_CameraRig : MonoBehaviour
 	{
 		if(isAiming)
 		{
-			float newFOV = Mathf.Lerp(mainCam.fieldOfView, cameraSettings.aimingFOV, cameraSettings.zoomSpeed * Time.deltaTime);
-			mainCam.fieldOfView = newFOV;
+			float newFOV = Mathf.Lerp(cameraSettings.mainCam.fieldOfView, cameraSettings.aimingFOV, cameraSettings.zoomSpeed * Time.deltaTime);
+			cameraSettings.mainCam.fieldOfView = newFOV;
+
+			if(cameraSettings.UICam)
+				cameraSettings.UICam.fieldOfView = newFOV;
 		}
 		else
 		{
-			float original = Mathf.Lerp(mainCam.fieldOfView, cameraSettings.defaultFOV, cameraSettings.zoomSpeed * Time.deltaTime);
-			mainCam.fieldOfView = original;
+			float original = Mathf.Lerp(cameraSettings.mainCam.fieldOfView, cameraSettings.defaultFOV, cameraSettings.zoomSpeed * Time.deltaTime);
+			cameraSettings.mainCam.fieldOfView = original;
+
+			if(cameraSettings.UICam)
+				cameraSettings.UICam.fieldOfView = original;
 		}
 	}
 
@@ -231,10 +248,9 @@ public class CAM_CameraRig : MonoBehaviour
 		}
 	}
 
-	private void PrePositionMainCamera() // Parent and position the main camera properly
+	private void SetupMainCamera() // Destroy existing Main Camera
 	{
-		mainCam.transform.parent = camTrans; // Parent it to Trans_CamPos
-		mainCam.transform.localPosition = Vector3.zero;
-		mainCam.transform.localRotation = Quaternion.Euler(Vector3.zero);
+		if(GameObject.Find("Main Camera"))
+			Destroy(GameObject.Find("Main Camera"));
 	}
 }

@@ -9,6 +9,7 @@ public class CHAR_Movement : MonoBehaviour
 	// Components
 	private Animator animator;
 	private CharacterController characterController;
+	private Transform trans;
 
 	[System.Serializable] // Show in inspector for classes
 	public class AnimationSettings
@@ -27,6 +28,8 @@ public class CHAR_Movement : MonoBehaviour
 		public float gravityModifier = 9.81f;
 		public float baseGravity = 50f;
 		public float resetGravityValue = 1.2f;
+		public LayerMask groundLayer;
+		public float airSpeed = 5f;
 	}
 	[SerializeField]
 	public PhysicsSettings physicsSettings;
@@ -40,10 +43,12 @@ public class CHAR_Movement : MonoBehaviour
 	[SerializeField]
 	public MovementSettings movementSettings;
 
-	private bool isGrounded = true;
 	private bool isJumping = false;
 	private bool resetGravity;
 	private float gravity;
+	private Vector3 airControlVector;
+	private float forward;
+	private float strafe;
 
 	[Header("For Debugging")]
 	public bool setupComponents = true;
@@ -52,26 +57,30 @@ public class CHAR_Movement : MonoBehaviour
 	{
 		// Cache components
 		animator = GetComponent<Animator>();
-		characterController = GetComponent<CharacterController>();
+		SetupAnimator();
+		trans = GetComponent<Transform>();
 	}
 
 	private void Start() 
 	{
+		characterController = GetComponent<CharacterController>();
 		SetupComponents();
-		SetupAnimator();
 	}
 
 	private void Update() 
 	{
+		AirControl(forward, strafe);
 		ApplyGravity();
-		isGrounded = characterController.isGrounded;
 	}
 
-	public void AnimateCharacter(float forward, float strafe) // Animates the character and root motion handles the movement
+	public void AnimateCharacter(float fw, float sf) // Animates the character and root motion handles the movement
 	{
-		animator.SetFloat(animationSettings.verticalFloat, forward);
-		animator.SetFloat(animationSettings.horizontalFloat, strafe);
-		animator.SetBool(animationSettings.groundedBool, isGrounded);
+		forward = fw;
+		strafe = sf;
+
+		animator.SetFloat(animationSettings.verticalFloat, fw);
+		animator.SetFloat(animationSettings.horizontalFloat, sf);
+		animator.SetBool(animationSettings.groundedBool, CheckGrounded());
 		animator.SetBool(animationSettings.jumpingBool, isJumping);
 	}
 
@@ -80,7 +89,7 @@ public class CHAR_Movement : MonoBehaviour
 		if(isJumping)
 			return;
 
-		if(isGrounded)
+		if(CheckGrounded())
 		{
 			isJumping = true;
 			StartCoroutine(ResetJump());
@@ -93,9 +102,34 @@ public class CHAR_Movement : MonoBehaviour
 		isJumping = false;
 	}
 
+	private void AirControl(float fw, float sf)
+	{
+		if(CheckGrounded())
+			return;
+
+		airControlVector.x = strafe;
+		airControlVector.z = forward;
+		airControlVector = trans.TransformDirection(airControlVector);
+		airControlVector *= physicsSettings.airSpeed;
+
+		characterController.Move(airControlVector * Time.deltaTime);
+	}
+
+	private bool CheckGrounded()
+	{
+		RaycastHit hit;
+		Vector3 start = trans.position + trans.up;
+		Vector3 dir = Vector3.down;
+
+		if(Physics.SphereCast(start, characterController.radius, dir, out hit, characterController.height * .5f, physicsSettings.groundLayer))
+			return true;
+		else
+			return false;
+	}
+
 	private void ApplyGravity()
 	{
-		if(!characterController.isGrounded)
+		if(!CheckGrounded())
 		{
 			if(!resetGravity)
 			{
@@ -139,21 +173,28 @@ public class CHAR_Movement : MonoBehaviour
 
 	private void SetupAnimator() // Setup the animator with the child avatar
 	{
-		Animator[] animators = GetComponentsInChildren<Animator>();
+		Animator wantedAnim = GetComponentsInChildren<Animator>()[1];
+		Avatar wantedAva = wantedAnim.avatar;
 
-		if(animators.Length > 0)
-		{
-			foreach(Animator a in animators)
-			{
-				Animator anim = a;
-				Avatar ava = anim.avatar;
+		animator.avatar = wantedAva;
+		Destroy(wantedAnim);
 
-				if(anim != animator)
-				{
-					animator.avatar = ava;
-					Destroy(anim);
-				}
-			}
-		}
+		#region Auto search and destroy all child animators
+		//Animator[] animators = GetComponentsInChildren<Animator>();
+		//if(animators.Length > 0)
+		//{
+		//	foreach(Animator a in animators)
+		//	{
+		//		Animator anim = a;
+		//		Avatar ava = anim.avatar;
+
+		//		if(anim != animator)
+		//		{
+		//			animator.avatar = ava;
+		//			Destroy(anim);
+		//		}
+		//	}
+		//}
+		#endregion
 	}
 }

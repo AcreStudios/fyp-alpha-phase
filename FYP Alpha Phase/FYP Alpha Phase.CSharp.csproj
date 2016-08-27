@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CAM_CameraRig.cs" />
     <Compile Include="Assets\Scripts\CAM_Flythrough.cs" />
+    <Compile Include="Assets\Scripts\CHAR_Footsteps.cs" />
     <Compile Include="Assets\Scripts\CHAR_Movement.cs" />
     <Compile Include="Assets\Scripts\CHAR_PlayerInput.cs" />
     <Compile Include="Assets\Scripts\Old\CAM_CameraLook.cs" />
@@ -87,6 +88,10 @@
     <Compile Include="Assets\Scripts\Old\TP_StatesHandler.cs" />
     <Compile Include="Assets\Scripts\Old\TP_VisionHandler.cs" />
     <Compile Include="Assets\Scripts\Old\_Perlin.cs" />
+    <Compile Include="Assets\Scripts\SND_Manager.cs" />
+    <Compile Include="Assets\Scripts\UI_Manager.cs" />
+    <Compile Include="Assets\Scripts\WPN_WeaponHandler.cs" />
+    <Compile Include="Assets\Scripts\WPN_WeaponSystem.cs" />
     <Compile Include="Assets\_Menu\Scripts\Killurself.cs" />
     <Compile Include="Assets\_Menu\Scripts\MenuScript.cs" />
     <Compile Include="Assets\_Menu\Scripts\VideoScript.cs" />
@@ -188,6 +193,7 @@
     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasicOutline.shader" />
     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonLit.shader" />
     <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonLitOutline.shader" />
+    <None Include="Assets\Standard Assets\Modern Russian Assault Rifle\Notes.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
