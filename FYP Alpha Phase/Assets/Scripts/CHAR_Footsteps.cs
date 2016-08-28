@@ -10,6 +10,7 @@ public class CHAR_Footsteps : MonoBehaviour
 
 	[Header("-Ground Settings-")]
 	public GroundTextureType[] groundTypes;
+	public LayerMask groundLayer;
 
 	[Header("-Sounds Settings-")]
 	public bool randomizePitch = true;
@@ -31,7 +32,7 @@ public class CHAR_Footsteps : MonoBehaviour
 		Vector3 start = trans.position + trans.up;
 		Vector3 dir = Vector3.down;
 
-		if(Physics.Raycast(start, dir, out hit, 1.3f))
+		if(Physics.Raycast(start, dir, out hit, 1.3f, groundLayer))
 		{
 			MeshRenderer mRend = hit.collider.GetComponent<MeshRenderer>();
 			if(mRend)

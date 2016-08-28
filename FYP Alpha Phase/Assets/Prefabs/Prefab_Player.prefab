@@ -2541,7 +2541,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2762,7 +2762,7 @@ MonoBehaviour:
   groundTypes:
   - groundName: Default Material
     mats:
-    - {fileID: 2100000, guid: 9b2ec94feb161794689e9f6bc2bc6712, type: 2}
+    - {fileID: 2100000, guid: 4f442775923b6644b96af17fd1cd26d1, type: 2}
     footstepSounds:
     - {fileID: 8300000, guid: a179ac7250810c24a9696390fa452dc2, type: 3}
     - {fileID: 8300000, guid: 45522f186191dc1469f182ae2b2ce9b2, type: 3}
@@ -2771,6 +2771,9 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 10e2264df4ae06347b78d1acbbec1354, type: 3}
     - {fileID: 8300000, guid: 09977d6d2193e7a41ba611010620e4fb, type: 3}
     - {fileID: 8300000, guid: eed14fade5b557c408ec490a79a226cc, type: 3}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1
   randomizePitch: 1
   minPitch: 0.8
   maxPitch: 0.9
