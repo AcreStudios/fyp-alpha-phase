@@ -216,7 +216,7 @@ public class CHAR_PlayerInput : MonoBehaviour
 		}
 	}
 
-	private void SetupCrosshairs() // Create the crosshair for each weapon
+	public void SetupCrosshairs() // Create the crosshair for each weapon
 	{
 		if(weaponHandler.weaponsList.Count > 0)
 		{

@@ -54,11 +54,12 @@
 			}
 
 			float4 _EdgeColor;
+			float _EdgeVisibility;
 
 			fixed4 frag (v2f i) : SV_Target
 			{
 				float NdotV = 1 - dot(i.normal, i.viewDir) * 1.5;
-				return _EdgeColor * NdotV;
+				return _EdgeColor * NdotV * _EdgeVisibility;
 			}
 
 			ENDCG

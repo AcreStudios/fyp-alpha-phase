@@ -223,4 +223,17 @@ public class WPN_WeaponHandler : MonoBehaviour
 			animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, 0f);
 		}
 	}
+
+	private void OnControllerColliderHit(ControllerColliderHit hit)
+	{
+		WPN_WeaponSystem pickup = hit.collider.GetComponent<WPN_WeaponSystem>();
+		if(pickup)
+		{
+			pickup.SetEquipState(true);
+			pickup.SetOwner(this);
+			AddWeaponToList(pickup);
+			if(GetComponent<CHAR_PlayerInput>())
+				GetComponent<CHAR_PlayerInput>().SetupCrosshairs();
+		}
+	}
 }

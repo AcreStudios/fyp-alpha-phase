@@ -50,7 +50,8 @@ namespace UnityEditor
 		}
 
 		MaterialProperty blendMode = null;
-		MaterialProperty edgeColor = null;
+		MaterialProperty edgeColor = null; //<<<
+		MaterialProperty edgeValue = null; //<<<
 		MaterialProperty albedoMap = null;
 		MaterialProperty albedoColor = null;
 		MaterialProperty alphaCutoff = null;
@@ -83,6 +84,7 @@ namespace UnityEditor
 		{
 			blendMode = FindProperty("_Mode", props);
 			edgeColor = FindProperty("_EdgeColor", props); // CUSTOM XRAY VISION <<<<
+			edgeValue = FindProperty("_EdgeVisibility", props);  // CUSTOM XRAY VISION <<<<
 			albedoMap = FindProperty("_MainTex", props);
 			albedoColor = FindProperty("_Color", props);
 			alphaCutoff = FindProperty("_Cutoff", props);
@@ -245,6 +247,7 @@ namespace UnityEditor
 		{
 			//m_MaterialEditor.TexturePropertySingleLine(Styles.edgeText, edgeColor);
 			m_MaterialEditor.DefaultShaderProperty(edgeColor, "Edge Color");
+			m_MaterialEditor.DefaultShaderProperty(edgeValue, "Edge Visibility");
 		}
 
 		void DoEmissionArea(Material material)

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 21a7e0fcfb9793b4fa6dca12f7795c3c
+guid: 7c88456c3efe5bf448bf55e1bcbf23a0
 timeCreated: 1471671336
 licenseType: Free
 TextureImporter:
@@ -8,7 +8,7 @@ TextureImporter:
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
-    linearTexture: 1
+    linearTexture: 0
     correctGamma: 0
     fadeOut: 0
     borderMipMap: 0

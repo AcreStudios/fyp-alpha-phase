@@ -134,7 +134,7 @@ public class WPN_WeaponSystem : MonoBehaviour
 		if(Physics.Raycast(bPoint, dir, out hit, weaponSettings.fireRange, weaponSettings.bulletLayer))
 		{
 			CHAR_Health hp = hit.transform.root.GetComponent<CHAR_Health>();
-			if(hp)
+			if(hp && hp.isActiveAndEnabled)
 				hp.ReceiveDamage(weaponSettings.bulletDamage);
 
 			#region Spawn bullet impact

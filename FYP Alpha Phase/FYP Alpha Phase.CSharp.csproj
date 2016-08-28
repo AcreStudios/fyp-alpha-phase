@@ -69,6 +69,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AI.cs" />
+    <Compile Include="Assets\Scripts\AIFunctions.cs" />
     <Compile Include="Assets\Scripts\CAM_CameraRig.cs" />
     <Compile Include="Assets\Scripts\CAM_Flythrough.cs" />
     <Compile Include="Assets\Scripts\CHAR_Footsteps.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="Assets\Scripts\CHAR_Movement.cs" />
     <Compile Include="Assets\Scripts\CHAR_PlayerInput.cs" />
     <Compile Include="Assets\Scripts\CHAR_Ragdoll.cs" />
+    <Compile Include="Assets\Scripts\EventManager.cs" />
     <Compile Include="Assets\Scripts\IMG_VisionReplacement.cs" />
     <Compile Include="Assets\Scripts\Old\CAM_CameraLook.cs" />
     <Compile Include="Assets\Scripts\Old\CAM_CameraShake.cs" />
@@ -91,6 +94,7 @@
     <Compile Include="Assets\Scripts\Old\TP_StatesHandler.cs" />
     <Compile Include="Assets\Scripts\Old\TP_VisionHandler.cs" />
     <Compile Include="Assets\Scripts\Old\_Perlin.cs" />
+    <Compile Include="Assets\Scripts\PlayerTrigger.cs" />
     <Compile Include="Assets\Scripts\SND_Manager.cs" />
     <Compile Include="Assets\Scripts\UI_Player.cs" />
     <Compile Include="Assets\Scripts\WPN_WeaponHandler.cs" />

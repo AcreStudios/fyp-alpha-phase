@@ -5,6 +5,7 @@ Shader "Vision/EnemyVisionStandardShader"
 		_Color("Color", Color) = (1,1,1,1)
 		_MainTex("Albedo", 2D) = "white" {}
 		_EdgeColor("XRay Edge Color", Color) = (1,1,1,1)
+		_EdgeVisibility("XRay Visibility", Range(0.0, 1.0)) = 1.0
 
 		_Cutoff("Alpha Cutoff", Range(0.0, 1.0)) = 0.5
 

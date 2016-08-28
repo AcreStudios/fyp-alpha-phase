@@ -10,7 +10,7 @@ Material:
   m_Shader: {fileID: 4800000, guid: 3d1fbd257900bd147ac4864d3a58819d, type: 3}
   m_ShaderKeywords: _METALLICGLOSSMAP _NORMALMAP
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 2001
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -127,6 +127,10 @@ Material:
         first:
           name: _Metallic
         second: 0
+      data:
+        first:
+          name: _EdgeVisibility
+        second: 0
     m_Colors:
       data:
         first:
@@ -139,4 +143,4 @@ Material:
       data:
         first:
           name: _EdgeColor
-        second: {r: 1, g: 1, b: 1, a: 1}
+        second: {r: 0.20000005, g: 0.79999995, b: 0, a: 1}

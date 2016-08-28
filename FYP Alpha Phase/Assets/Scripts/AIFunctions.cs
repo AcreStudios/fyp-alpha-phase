@@ -21,7 +21,7 @@ public class AIFunctions : MonoBehaviour {
     float prevHeadRotation;
     float shootingTime;
     float rotateTime;
-    bool ableToRotate;
+    //bool ableToRotate;
     protected Vector3 startingPoint;
 	protected CHAR_Movement moveInst;
 	protected WPN_WeaponHandler weapInst;
@@ -48,7 +48,7 @@ public class AIFunctions : MonoBehaviour {
 
     void Awake() {
         Health = 100;
-        ableToRotate = true;
+        //ableToRotate = true;
         //gameObject.tag = "Enemy";
 
         guns[0] = transform.Find("Hanna_GunL");
@@ -166,9 +166,9 @@ public class AIFunctions : MonoBehaviour {
         }
 
         Vector3 temp;
-        float totalMag;
+        //float totalMag;
 
-        totalMag = (target.position - transform.position).magnitude;
+        //totalMag = (target.position - transform.position).magnitude;
         temp =  target.position - transform.position;
         temp = Vector3.Normalize(temp); 
         return target.position - (temp * 30); //Scales this to hp?

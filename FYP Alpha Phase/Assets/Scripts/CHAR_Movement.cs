@@ -166,7 +166,8 @@ public class CHAR_Movement : MonoBehaviour
 
 			// Character controller
 			characterController.skinWidth = 0.0001f;
-			characterController.center = new Vector3(0f, 1f, 0f);
+			characterController.center = new Vector3(0f, .8f, 0f);
+			characterController.height = 1.6f;
 			characterController.radius = .25f;
 		}
 	}
