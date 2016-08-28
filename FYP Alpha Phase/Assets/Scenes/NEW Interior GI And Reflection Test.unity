@@ -16442,7 +16442,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 11417362, guid: 7347c71c891dba143bb19664b0d4a3b9, type: 2}
       propertyPath: weaponsList.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 445358, guid: 7347c71c891dba143bb19664b0d4a3b9, type: 2}
       propertyPath: m_LocalPosition.x
@@ -19897,7 +19897,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 427978, guid: f44c0154ed6f64643b4f771d833c403c, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -5.942
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 427978, guid: f44c0154ed6f64643b4f771d833c403c, type: 2}
       propertyPath: m_LocalRotation.x

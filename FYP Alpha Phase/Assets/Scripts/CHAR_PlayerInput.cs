@@ -226,7 +226,8 @@ public class CHAR_PlayerInput : MonoBehaviour
 				if(ch)
 				{
 					GameObject c = Instantiate(ch);
-					crosshairMap.Add(wep, c);
+					if(!crosshairMap.ContainsKey(wep))
+						crosshairMap.Add(wep, c);
 					ToggleCrosshair(false, wep);
 				}
 			}
