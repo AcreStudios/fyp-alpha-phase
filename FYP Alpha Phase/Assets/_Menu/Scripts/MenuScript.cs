@@ -131,8 +131,6 @@ public class MenuScript : MonoBehaviour {
         GORedSettings.SetActive(false);
         GORedCredits.SetActive(false);
         GORedQuit.SetActive(false);
-
-        MenuNumb = 0;
     }
     public void MOSettings() {
         NewGame.SetActive(true);
@@ -173,46 +171,6 @@ public class MenuScript : MonoBehaviour {
 
         MenuNumb = 3;
     }
-    /*
-    public void MenuHandler() {
-        if (MenuNumb == 0) {
-            MONewGame();
-        }
-        else if (MenuNumb == 1) {
-            MOSettings();
-        }
-        else if (MenuNumb == 2) {
-            MOCredits();
-        }
-        else if (MenuNumb == 3) {
-            MOQuit();
-        }
-    }
-    public void MenuInputHandler() {
-        if (Input.GetKey(KeyCode.DownArrow)) {
-            if (MenuNumb == 0) {
-                MenuNumb = 1;
-            }
-            else if (MenuNumb == 1) {
-                MenuNumb = 2;
-            }
-            else if (MenuNumb == 2) {
-                MenuNumb = 3;
-            }
-        }
-        else if (Input.GetKey(KeyCode.UpArrow)) {
-            if (MenuNumb == 3) {
-                MenuNumb = 2;
-            }
-            else if (MenuNumb == 2) {
-                MenuNumb = 1;
-            }
-            else if (MenuNumb == 1) {
-                MenuNumb = 0;
-            }
-        }
-    }
-    */
 
     //Settings Button Handling System *****************
     public void MOGame() {

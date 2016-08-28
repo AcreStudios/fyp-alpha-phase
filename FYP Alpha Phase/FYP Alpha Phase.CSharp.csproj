@@ -61,6 +61,12 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>Library\UnityAssemblies\UnityEditor.iOS.Extensions.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="FYP Alpha Phase.CSharp.Plugins.csproj">
@@ -95,8 +101,15 @@
     <Compile Include="Assets\Scripts\WPN_WeaponHandler.cs" />
     <Compile Include="Assets\Scripts\WPN_WeaponSystem.cs" />
     <Compile Include="Assets\Scripts\_Dummy.cs" />
+    <Compile Include="Assets\_Menu\Scripts\Keyboard Controller Scripts\CreditsMenuControlScript.cs" />
+    <Compile Include="Assets\_Menu\Scripts\Keyboard Controller Scripts\LoadingControllerScript.cs" />
+    <Compile Include="Assets\_Menu\Scripts\Keyboard Controller Scripts\MainMenuControllerScript.cs" />
+    <Compile Include="Assets\_Menu\Scripts\Keyboard Controller Scripts\QuitMenuControllerScript.cs" />
+    <Compile Include="Assets\_Menu\Scripts\Keyboard Controller Scripts\SettingsMenuControlScript.cs" />
+    <Compile Include="Assets\_Menu\Scripts\Keyboard Controller Scripts\StartScreenControllerScript.cs" />
     <Compile Include="Assets\_Menu\Scripts\Killurself.cs" />
     <Compile Include="Assets\_Menu\Scripts\MenuScript.cs" />
+    <Compile Include="Assets\_Menu\Scripts\NewMenuScript.cs" />
     <Compile Include="Assets\_Menu\Scripts\VideoScript.cs" />
   </ItemGroup>
   <ItemGroup>
