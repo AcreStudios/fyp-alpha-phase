@@ -41,14 +41,22 @@ public class WPN_WeaponHandler : MonoBehaviour
 		animator = GetComponent<Animator>();
 	}
 
-	private void Update() 
+	private void OnEnable()
+	{
+		SetupWeapons();
+	}
+
+	private void SetupWeapons()
 	{
 		if(currentWeapon)
 		{
 			currentWeapon.SetEquipState(true);
 			currentWeapon.SetOwner(this);
 			AddWeaponToList(currentWeapon);
-			currentWeapon.handlerAiming = aiming;
+
+			if(reloading)
+				if(switchingWeapon)
+					reloading = false;
 		}
 
 		if(weaponsList.Count > 0)
@@ -62,7 +70,10 @@ public class WPN_WeaponHandler : MonoBehaviour
 				}
 			}
 		}
+	}
 
+	private void Update() 
+	{
 		AnimateWeapon();
 	}
 
@@ -181,6 +192,7 @@ public class WPN_WeaponHandler : MonoBehaviour
 			currentWeapon = weaponsList[0];
 
 		StartCoroutine(FinishSwitchWeapon());
+		SetupWeapons();
 	}
 
 	private IEnumerator FinishSwitchWeapon() // Finish switching weapons

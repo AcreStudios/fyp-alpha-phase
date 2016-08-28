@@ -6,8 +6,8 @@ using System.Collections.Generic;
 public class CHAR_PlayerInput : MonoBehaviour
 {
 	// Components
-	public CHAR_Movement characterMove { get; protected set; }
-	public WPN_WeaponHandler weaponHandler { get; protected set; }
+	private CHAR_Movement characterMove;
+	private WPN_WeaponHandler weaponHandler;
 	private Transform trans;
 
 	[System.Serializable]
@@ -43,6 +43,9 @@ public class CHAR_PlayerInput : MonoBehaviour
 	private bool isAiming;
 	private Transform mainCamTrans;
 
+	Dictionary<WPN_WeaponSystem, GameObject> crosshairMap = new Dictionary<WPN_WeaponSystem, GameObject>();
+
+
 	private void Awake()
 	{
 		characterMove = GetComponent<CHAR_Movement>();
@@ -53,6 +56,8 @@ public class CHAR_PlayerInput : MonoBehaviour
 	private void Start()
 	{
 		mainCamTrans = Camera.main.transform;
+
+		SetupCrosshairs();
 	}
 
 	private void Update()
@@ -97,7 +102,7 @@ public class CHAR_PlayerInput : MonoBehaviour
 	private void CameraLogic() // Handles camera logic
 	{
 		// Auto turn when aiming?
-		lookSettings.requireInputToTurn = !isAiming; 
+		lookSettings.requireInputToTurn = !isAiming;
 
 		if(lookSettings.requireInputToTurn)
 		{
@@ -157,16 +162,21 @@ public class CHAR_PlayerInput : MonoBehaviour
 
 		#region Switch
 		if(Input.GetButtonDown(inputSettings.switchButton))
+		{
 			weaponHandler.SwitchNextWeapon();
+			UpdateCrosshairs();
+		}
 		#endregion
 
 		if(!weaponHandler.currentWeapon) // If no weapon equipped
+		{
+			TurnOffAllCrosshairs();
 			return;
+		}
+
+		Ray ray = new Ray(mainCamTrans.position, mainCamTrans.forward);
 
 		#region Fire
-		Ray ray = new Ray(mainCamTrans.position, mainCamTrans.forward);
-		weaponHandler.currentWeapon.aimRay = ray;
-
 		if(isAiming && Input.GetButton(inputSettings.fireButton))
 			weaponHandler.FireCurrentWeapon(ray);
 		#endregion
@@ -178,7 +188,128 @@ public class CHAR_PlayerInput : MonoBehaviour
 
 		#region Drop
 		if(Input.GetButtonDown(inputSettings.dropButton))
+		{
+			DeleteCrosshair(weaponHandler.currentWeapon);
 			weaponHandler.DropCurrentWeapon();
+		}
 		#endregion
+
+		#region Crosshair
+		if(isAiming)
+		{
+			ToggleCrosshair(true, weaponHandler.currentWeapon);
+			PositionCrosshair(ray, weaponHandler.currentWeapon);
+		}
+		else
+			ToggleCrosshair(false, weaponHandler.currentWeapon);
+		#endregion
+	}
+
+	private void TurnOffAllCrosshairs()
+	{
+		if(crosshairMap.Count == 0)
+			return;
+
+		foreach(WPN_WeaponSystem wep in crosshairMap.Keys)
+		{
+			ToggleCrosshair(false, wep);
+		}
+	}
+
+	private void SetupCrosshairs() // Create the crosshair for each weapon
+	{
+		if(weaponHandler.weaponsList.Count > 0)
+		{
+			foreach(WPN_WeaponSystem wep in weaponHandler.weaponsList)
+			{
+				GameObject ch = wep.weaponSettings.crosshairPrefab;
+				if(ch)
+				{
+					GameObject c = Instantiate(ch);
+					crosshairMap.Add(wep, c);
+					ToggleCrosshair(false, wep);
+				}
+			}
+		}
+	}
+
+	private void CreateCrosshair(WPN_WeaponSystem wep)
+	{
+		GameObject ch = wep.weaponSettings.crosshairPrefab;
+
+		if(ch)
+		{
+			ch = Instantiate(ch);
+			ToggleCrosshair(false, wep);
+		}
+	}
+
+	private void DeleteCrosshair(WPN_WeaponSystem wep)
+	{
+		if(!crosshairMap.ContainsKey(wep))
+			return;
+
+		Destroy(crosshairMap[wep]);
+		crosshairMap.Remove(wep);
+	}
+
+	private void PositionCrosshair(Ray ray, WPN_WeaponSystem wep) // Positions the crosshair to the point where we are aiming
+	{
+		WPN_WeaponSystem curWeapon = weaponHandler.currentWeapon;
+
+		if(!curWeapon)
+			return;
+
+		if(!crosshairMap.ContainsKey(wep))
+			return;
+
+
+		GameObject chPrefab = crosshairMap[wep];
+		RaycastHit hit;
+		Transform bSpawn = curWeapon.weaponSettings.bulletSpawnPoint;
+		Vector3 bPoint = bSpawn.position;
+		Vector3 dir = ray.GetPoint(curWeapon.weaponSettings.fireRange) - bPoint;
+		Debug.DrawRay(bPoint, dir, Color.red);
+		if(Physics.Raycast(bPoint, dir, out hit, curWeapon.weaponSettings.fireRange, lookSettings.aimLayer))
+		{
+			if(chPrefab)
+			{
+				ToggleCrosshair(true, curWeapon);
+
+				chPrefab.transform.position = hit.point;
+				chPrefab.transform.LookAt(Camera.main.transform);
+			}
+		}
+		else
+			ToggleCrosshair(false, curWeapon);
+	}
+
+	private void ToggleCrosshair(bool enabled, WPN_WeaponSystem wep) // Toggle on or off the dynamic crosshair
+	{
+		if(!crosshairMap[wep])
+			return;
+
+		if(!crosshairMap.ContainsKey(wep))
+			return;
+
+		if(wep)
+			crosshairMap[wep].SetActive(enabled);
+	}
+
+	private void UpdateCrosshairs()
+	{
+		if(weaponHandler.weaponsList.Count == 0)
+			return;
+
+		foreach(WPN_WeaponSystem wep in weaponHandler.weaponsList)
+		{
+			if(wep != weaponHandler.currentWeapon)
+				ToggleCrosshair(false, wep);
+		}
+	}
+
+	private void OnDisable()
+	{
+		TurnOffAllCrosshairs();
 	}
 }

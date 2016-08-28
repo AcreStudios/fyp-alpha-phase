@@ -67,7 +67,7 @@ public class CHAR_Movement : MonoBehaviour
 		SetupComponents();
 	}
 
-	private void Update() 
+	private void Update()
 	{
 		AirControl(forward, strafe);
 		ApplyGravity();

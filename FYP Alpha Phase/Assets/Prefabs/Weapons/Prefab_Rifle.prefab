@@ -570,7 +570,7 @@ MonoBehaviour:
     autoReload: 0
     bulletLayer:
       serializedVersion: 2
-      m_Bits: 529
+      m_Bits: 513
     bulletImpactPrefab: {fileID: 159594, guid: ac39ef391ed76a240901d49988b48064, type: 2}
     muzzleFlashPrefab: {fileID: 138714, guid: e43c9385266ab1c4fa273253eda9bac3, type: 2}
     bulletCasingPrefab: {fileID: 181962, guid: 89f66f2474f67e64e8357427c5a2c2b6, type: 2}
@@ -578,7 +578,7 @@ MonoBehaviour:
     casingSpawnPoint: {fileID: 421606}
     clipSpawnPoint: {fileID: 0}
     casingSpawnSpeed: 1
-    crosshairPrefab: {fileID: 135026, guid: a8db62b959da2c141873ce6f5707e8d3, type: 2}
+    crosshairPrefab: {fileID: 187748, guid: de91388ed91fa104b984438b0a04db3e, type: 2}
     equipPosition: {x: -0.075, y: 0.375, z: 0.008}
     equipRotation: {x: 355, y: 0, z: 90}
     unequipPosition: {x: 0.03, y: 0.25, z: -0.15}

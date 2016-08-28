@@ -33,6 +33,8 @@ public class CAM_CameraRig : MonoBehaviour
 		public float hideMeshWhenDistance = .5f;
 		[HideInInspector]
 		public SkinnedMeshRenderer[] meshes;
+		[HideInInspector]
+		public MeshRenderer[] gunMeshes;
 
 		[Header("-All Cameras")]
 		public Camera mainCam;
@@ -76,9 +78,8 @@ public class CAM_CameraRig : MonoBehaviour
 	{
 		// Get meshes from target
 		TargetPlayer();
-
-		if(target)
-			cameraSettings.meshes = target.GetComponentsInChildren<SkinnedMeshRenderer>();
+		cameraSettings.meshes = target.GetComponentsInChildren<SkinnedMeshRenderer>();
+		cameraSettings.gunMeshes = target.GetComponentsInChildren<MeshRenderer>();
 	}
 
 	private void Update() 
@@ -195,7 +196,7 @@ public class CAM_CameraRig : MonoBehaviour
 
 	private void CheckMeshDistance() // Hide the meshes if within distance
 	{
-		if(!cameraSettings.mainCam || !target || cameraSettings.meshes.Length > 1)
+		if(!cameraSettings.mainCam || !target)
 			return;
 
 		Transform mainCamTrans = camTrans;
@@ -206,6 +207,17 @@ public class CAM_CameraRig : MonoBehaviour
 		if(cameraSettings.meshes.Length > 0)
 		{
 			foreach(SkinnedMeshRenderer rend in cameraSettings.meshes)
+			{
+				if(dist < cameraSettings.hideMeshWhenDistance)
+					rend.enabled = false;
+				else
+					rend.enabled = true;
+			}
+		}
+
+		if(cameraSettings.gunMeshes.Length > 0)
+		{
+			foreach(MeshRenderer rend in cameraSettings.gunMeshes)
 			{
 				if(dist < cameraSettings.hideMeshWhenDistance)
 					rend.enabled = false;

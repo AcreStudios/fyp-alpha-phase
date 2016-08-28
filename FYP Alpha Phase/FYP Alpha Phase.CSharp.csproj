@@ -18,6 +18,7 @@
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.3.5f1</UnityVersion>
     <RootNamespace></RootNamespace>
+    <LangVersion Condition=" '$(VisualStudioVersion)' != '10.0' ">4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -57,12 +58,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -77,8 +72,10 @@
     <Compile Include="Assets\Scripts\CAM_CameraRig.cs" />
     <Compile Include="Assets\Scripts\CAM_Flythrough.cs" />
     <Compile Include="Assets\Scripts\CHAR_Footsteps.cs" />
+    <Compile Include="Assets\Scripts\CHAR_Health.cs" />
     <Compile Include="Assets\Scripts\CHAR_Movement.cs" />
     <Compile Include="Assets\Scripts\CHAR_PlayerInput.cs" />
+    <Compile Include="Assets\Scripts\CHAR_Ragdoll.cs" />
     <Compile Include="Assets\Scripts\Old\CAM_CameraLook.cs" />
     <Compile Include="Assets\Scripts\Old\CAM_CameraShake.cs" />
     <Compile Include="Assets\Scripts\Old\CAM_Crosshair.cs" />
@@ -94,9 +91,10 @@
     <Compile Include="Assets\Scripts\Old\TP_VisionHandler.cs" />
     <Compile Include="Assets\Scripts\Old\_Perlin.cs" />
     <Compile Include="Assets\Scripts\SND_Manager.cs" />
-    <Compile Include="Assets\Scripts\UI_Manager.cs" />
+    <Compile Include="Assets\Scripts\UI_Player.cs" />
     <Compile Include="Assets\Scripts\WPN_WeaponHandler.cs" />
     <Compile Include="Assets\Scripts\WPN_WeaponSystem.cs" />
+    <Compile Include="Assets\Scripts\_Dummy.cs" />
     <Compile Include="Assets\_Menu\Scripts\Killurself.cs" />
     <Compile Include="Assets\_Menu\Scripts\MenuScript.cs" />
     <Compile Include="Assets\_Menu\Scripts\VideoScript.cs" />

@@ -89,10 +89,6 @@ public class WPN_WeaponSystem : MonoBehaviour
 	[SerializeField]
 	public SoundSettings soundSettings;
 
-	// For crosshair
-	public Ray aimRay { protected get; set; }
-	public bool handlerAiming { get; set; }
-
 	// States
 	private bool equipped;
 	private bool loading;
@@ -103,16 +99,8 @@ public class WPN_WeaponSystem : MonoBehaviour
 		rb = GetComponent<Rigidbody>();
 		animator = GetComponent<Animator>();
 		trans = GetComponent<Transform>();
-	}
 
-	private void Start()
-	{
-		// Instantiate crosshair prefab
-		if(weaponSettings.crosshairPrefab)
-		{
-			weaponSettings.crosshairPrefab = Instantiate(weaponSettings.crosshairPrefab);
-			ToggleCrosshair(false);
-		}
+		EquipWeapon();
 	}
 
 	private void Update() 
@@ -121,29 +109,14 @@ public class WPN_WeaponSystem : MonoBehaviour
 		{
 			DisableEnableComponents(false);
 			if(equipped)
-			{
-				if(weaponHandler.modelSettings.rightHand)
-				{
 					EquipWeapon();
-
-					if(handlerAiming)
-						PositionCrosshair(aimRay);
-					else
-						ToggleCrosshair(false);
-				}
-			}
 			else
-			{
 				UnequipWeapon(weaponType);
-				ToggleCrosshair(false); // Disable this and switch weapons to sync crosshairs!
-			}
 		}
 		else // If !weaponHandler
 		{
 			DisableEnableComponents(true);
 			trans.SetParent(null);
-			handlerAiming = false;
-			ToggleCrosshair(false);
 		}
 	}
 
@@ -160,7 +133,9 @@ public class WPN_WeaponSystem : MonoBehaviour
 
 		if(Physics.Raycast(bPoint, dir, out hit, weaponSettings.fireRange, weaponSettings.bulletLayer))
 		{
-			//Debug.DrawLine(bPoint, hit.point, Color.red, 1f);
+			CHAR_Health hp = hit.transform.root.GetComponent<CHAR_Health>();
+			if(hp)
+				hp.ReceiveDamage(weaponSettings.bulletDamage);
 
 			#region Spawn bullet impact
 			if(weaponSettings.bulletImpactPrefab)
@@ -242,33 +217,6 @@ public class WPN_WeaponSystem : MonoBehaviour
 		}
 		#endregion
 	}
-
-	private void PositionCrosshair(Ray ray) // Positions the crosshair to the point where we are aiming
-	{
-		RaycastHit hit;
-		Transform bSpawn = weaponSettings.bulletSpawnPoint;
-		Vector3 bPoint = bSpawn.position;
-		Vector3 dir = ray.GetPoint(weaponSettings.fireRange) - bPoint;
-
-		if(Physics.Raycast(bPoint, dir, out hit, weaponSettings.fireRange, weaponSettings.bulletLayer))
-		{
-			if(weaponSettings.crosshairPrefab)
-			{
-				ToggleCrosshair(true);
-
-				weaponSettings.crosshairPrefab.transform.position = hit.point;
-				weaponSettings.crosshairPrefab.transform.LookAt(Camera.main.transform);
-			}
-		}
-		else
-			ToggleCrosshair(false);
-	}
-
-	private void ToggleCrosshair(bool enabled) // Toggle on or off the dynamic crosshair
-	{
-		if(weaponSettings.crosshairPrefab)
-			weaponSettings.crosshairPrefab.SetActive(enabled);
-	} 
 
 	private void DisableEnableComponents(bool enabled) // Disable or enable rigidbody and collider
 	{
