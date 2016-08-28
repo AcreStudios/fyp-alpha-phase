@@ -1,10 +1,9 @@
-Shader "Vision/EnemyVisionStandardShader"
+Shader "Vision/PlayerVisionStandardShader"
 {
 	Properties
 	{
 		_Color("Color", Color) = (1,1,1,1)
 		_MainTex("Albedo", 2D) = "white" {}
-		_EdgeColor("XRay Edge Color", Color) = (1,1,1,1)
 
 		_Cutoff("Alpha Cutoff", Range(0.0, 1.0)) = 0.5
 
@@ -49,7 +48,6 @@ Shader "Vision/EnemyVisionStandardShader"
 		{
 			"RenderType" = "Opaque"
 			"PerformanceChecks" = "False"
-			"Vision" = "XRayOutline"
 		}
 		LOD 300
 
@@ -62,7 +60,7 @@ Shader "Vision/EnemyVisionStandardShader"
 
 			Blend[_SrcBlend][_DstBlend]
 			ZWrite[_ZWrite]
-			ZTest GEqual
+
 			CGPROGRAM
 			#pragma target 3.0
 			// TEMPORARY: GLES2.0 temporarily disabled to prevent errors spam on devices without textureCubeLodEXT
@@ -332,5 +330,5 @@ Shader "Vision/EnemyVisionStandardShader"
 	}
 
 	FallBack "VertexLit"
-	CustomEditor "EnemyVisionStandardShaderGUI"
+	CustomEditor "PlayerVisionStandardShaderGUI"
 }

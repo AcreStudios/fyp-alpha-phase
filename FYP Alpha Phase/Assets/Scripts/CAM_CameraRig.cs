@@ -39,6 +39,7 @@ public class CAM_CameraRig : MonoBehaviour
 		[Header("-All Cameras")]
 		public Camera mainCam;
 		public Camera UICam;
+		public Camera visionCam;
 	}
 	[SerializeField]
 	public CameraSettings cameraSettings;
@@ -236,6 +237,9 @@ public class CAM_CameraRig : MonoBehaviour
 
 			if(cameraSettings.UICam)
 				cameraSettings.UICam.fieldOfView = newFOV;
+
+			if(cameraSettings.visionCam)
+				cameraSettings.visionCam.fieldOfView = newFOV;
 		}
 		else
 		{
@@ -244,6 +248,9 @@ public class CAM_CameraRig : MonoBehaviour
 
 			if(cameraSettings.UICam)
 				cameraSettings.UICam.fieldOfView = original;
+
+			if(cameraSettings.visionCam)
+				cameraSettings.visionCam.fieldOfView = original;
 		}
 	}
 

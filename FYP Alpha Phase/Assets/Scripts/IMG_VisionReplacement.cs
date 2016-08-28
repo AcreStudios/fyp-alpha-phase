@@ -16,10 +16,12 @@ public class IMG_VisionReplacement : MonoBehaviour
 	void OnEnable()
 	{
 		visionCam.SetReplacementShader(XRayShader, "Vision");
+		//visionCam.clearStencilAfterLightingPass = true;
 	}
 
 	void OnDisable()
 	{
 		visionCam.ResetReplacementShader();
+		//visionCam.clearStencilAfterLightingPass = true;
 	}
 }

@@ -7,12 +7,6 @@
 
 	SubShader
 	{
-		Stencil
-		{
-			Ref 1
-			Comp NotEqual
-		}
-
 		Tags
 		{
 			"Queue" = "Transparent"
