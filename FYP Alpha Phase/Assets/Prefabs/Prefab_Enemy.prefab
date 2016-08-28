@@ -938,6 +938,7 @@ GameObject:
   - 82: {fileID: 8250960}
   - 114: {fileID: 11479000}
   - 114: {fileID: 11438274}
+  - 114: {fileID: 11441938}
   m_Layer: 0
   m_Name: Prefab_Enemy
   m_TagString: Player
@@ -2629,7 +2630,6 @@ MonoBehaviour:
   currentWeapon: {fileID: 0}
   weaponsList:
   - {fileID: 0}
-  - {fileID: 0}
   maxWeapons: 1
 --- !u!114 &11438274
 MonoBehaviour:
@@ -2648,6 +2648,17 @@ MonoBehaviour:
   - {fileID: 11407798}
   - {fileID: 11479000}
   - {fileID: 11438274}
+--- !u!114 &11441938
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 174676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 656ea0c914c227d48907fce9660b4622, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11479000
 MonoBehaviour:
   m_ObjectHideFlags: 1

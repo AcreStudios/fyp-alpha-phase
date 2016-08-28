@@ -816,11 +816,7 @@ Prefab:
     - target: {fileID: 11407798, guid: 1803202425d5ace449a2b03a4bd9fd71, type: 2}
       propertyPath: weaponsList.Array.data[0]
       value: 
-      objectReference: {fileID: 1769324295}
-    - target: {fileID: 11407798, guid: 1803202425d5ace449a2b03a4bd9fd71, type: 2}
-      propertyPath: weaponsList.Array.data[1]
-      value: 
-      objectReference: {fileID: 502873410}
+      objectReference: {fileID: 865955796}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1803202425d5ace449a2b03a4bd9fd71, type: 2}
   m_IsPrefabParent: 0
