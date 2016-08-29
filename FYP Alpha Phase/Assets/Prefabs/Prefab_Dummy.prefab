@@ -2647,7 +2647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a011f41790e9b84419e76a474b393638, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curHealth: 1
+  curHealth: 100
   scriptsToDisable:
   - {fileID: 11451518}
   - {fileID: 11407798, guid: 1803202425d5ace449a2b03a4bd9fd71, type: 2}

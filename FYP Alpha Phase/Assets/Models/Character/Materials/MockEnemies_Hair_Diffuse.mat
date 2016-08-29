@@ -144,4 +144,4 @@ Material:
       data:
         first:
           name: _EdgeColor
-        second: {r: 0.99, g: 0.01, b: 0, a: 1}
+        second: {r: 0, g: 1, b: 0, a: 1}
