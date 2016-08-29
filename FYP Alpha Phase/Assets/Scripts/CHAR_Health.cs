@@ -29,8 +29,9 @@ public class CHAR_Health : MonoBehaviour
 	[SerializeField]
 	public EnemySettings enemySettings;
 
-	private bool isVisible = false;
 	private bool switching = false;
+	public bool isVisible = false;
+	public float damageTimer = 0f;
 
 
 	private void Awake()
@@ -56,6 +57,19 @@ public class CHAR_Health : MonoBehaviour
 		CalculateVision();
 	}
 
+	private void Update()
+	{
+		if(damageTimer > 0)
+			damageTimer -= Time.deltaTime;
+
+		if(damageTimer < 0)
+		{
+			if(isVisible)
+				StartCoroutine(BecomeNotVisible());
+			damageTimer = 0;
+		}	
+	}
+
 	public void ReceiveDamage(float dmg)
 	{
 		curHealth -= dmg;
@@ -66,6 +80,10 @@ public class CHAR_Health : MonoBehaviour
 			Die();
 		else
 			CalculateVision();
+
+		damageTimer = 5f;
+		if(!isVisible)
+			StartCoroutine(BecomeVisible());
 	}
 
 	private void Die()
@@ -111,17 +129,6 @@ public class CHAR_Health : MonoBehaviour
 			else
 				mat.SetColor("_EdgeColor", enemySettings.curHealthColor);
 		}
-	}
-
-	public void Ping()
-	{
-		if(switching)
-			return;
-
-		if(!isVisible)
-			StartCoroutine(BecomeVisible());
-		else
-			StartCoroutine(BecomeNotVisible());
 	}
 
 	private IEnumerator BecomeVisible()

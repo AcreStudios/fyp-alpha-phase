@@ -83,6 +83,7 @@ public class UI_Player : MonoBehaviour
 			}
 			else
 			{
+				playerUI.curAmmoText.enabled = true;
 				playerUI.curAmmoText.text = playerWeapon.currentWeapon.ammoSettings.currentAmmo.ToString();
 				playerUI.totAmmoText.text = "/" + playerWeapon.currentWeapon.ammoSettings.totalAmmo;
 			}

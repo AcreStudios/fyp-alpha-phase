@@ -130,7 +130,7 @@ Material:
       data:
         first:
           name: _EdgeVisibility
-        second: 0
+        second: 1
     m_Colors:
       data:
         first:
@@ -143,4 +143,4 @@ Material:
       data:
         first:
           name: _EdgeColor
-        second: {r: 0.20000005, g: 0.79999995, b: 0, a: 1}
+        second: {r: 0, g: 0, b: 0, a: 1}
