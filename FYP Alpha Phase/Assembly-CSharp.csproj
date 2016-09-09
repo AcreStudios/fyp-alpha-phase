@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\DEBUG_SceneManager.cs" />
+     <Compile Include="Assets\Experiments\AnimatorExperiment.cs" />
      <Compile Include="Assets\Scripts\CAM_CameraRig.cs" />
      <Compile Include="Assets\Scripts\CAM_Flythrough.cs" />
      <Compile Include="Assets\Scripts\CHAR_Footsteps.cs" />

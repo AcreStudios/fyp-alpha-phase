@@ -179,7 +179,7 @@ public class AIFunctions : MonoBehaviour {
         return Vector3.zero;
     }
 
-    Vector3 ObstacleCorners(int firstIndex, int secondIndex, Collider obsColl) {
+    Vector3 ObstacleCorners(int firstIndex, int secondIndex, Collider obsColl) { //Stuff from below here are sending wrong info probably
         float extentF;
 
         finalPoint = playerTouchPoint;
