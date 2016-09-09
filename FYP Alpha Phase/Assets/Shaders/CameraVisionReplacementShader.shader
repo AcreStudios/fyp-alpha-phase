@@ -1,4 +1,6 @@
-﻿Shader "Vision/ReplacementShader"
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
+Shader "Vision/ReplacementShader"
 {
 	Properties
 	{
@@ -49,7 +51,7 @@
 				o.vertex = mul(UNITY_MATRIX_MVP, v.vertex);
 				o.uv = v.uv;
 				o.normal = UnityObjectToWorldNormal(v.normal);
-				o.viewDir = normalize(_WorldSpaceCameraPos.xyz - mul(_Object2World, v.vertex).xyz);
+				o.viewDir = normalize(_WorldSpaceCameraPos.xyz - mul(unity_ObjectToWorld, v.vertex).xyz);
 				return o;
 			}
 

@@ -8,11 +8,11 @@ public class AIFunctions : MonoBehaviour {
     public float shootInterval;
     public float gunSprayValue;
     public float range;
-    public GameObject gunEffect;
+    //public GameObject gunEffect;
 
     public float Health { get; set; }
 
-	public Transform target;
+    protected Transform target;
     const float lerpAdditionValue = 0.03f;
 
     float lerpValue;
@@ -21,11 +21,11 @@ public class AIFunctions : MonoBehaviour {
     float prevHeadRotation;
     float shootingTime;
     float rotateTime;
-    //bool ableToRotate;
+    bool ableToRotate;
     protected Vector3 startingPoint;
-	protected CHAR_Movement moveInst;
-	protected WPN_WeaponHandler weapInst;
-	Ray ray;
+    protected bool showGunEffect;
+    protected Vector3 scaleValue;
+
 
     #region Building/Cover Shooting Module Variables
     protected Collider tempObs;
@@ -43,13 +43,12 @@ public class AIFunctions : MonoBehaviour {
 
     int index;
     float temp;
-
     #endregion
 
     void Awake() {
         Health = 100;
-        //ableToRotate = true;
-        //gameObject.tag = "Enemy";
+        ableToRotate = true;
+        gameObject.tag = "Enemy";
 
         guns[0] = transform.Find("Hanna_GunL");
     }
@@ -117,32 +116,26 @@ public class AIFunctions : MonoBehaviour {
                 AlertOtherTroops();
                 
                 offset = new Vector3(Random.Range(-gunSprayValue, gunSprayValue), Random.Range(-gunSprayValue, gunSprayValue), 0);
-                //foreach (Transform gun in guns) {
-                   // gun.LookAt(target);
-
-                //gunEffect.SetActive(true);
-                //Debug.Log(gunEffect.transform.position);
-               // gunEffect.transform.position = gun.position;
-               // StartCoroutine(Test(gun.position));
-                //Debug.Log(gunEffect.transform.position);
-                //gunEffect.transform.position = Vector3.zero;
-                //gunEffect.SetActive(false);
-
-				ray.origin = transform.position;
-				ray.direction = transform.TransformDirection (0, 0, range) + offset;
-				weapInst.FireCurrentWeapon (ray);
-                    //Debug.DrawLine(gun.position, gun.position +transform.TransformDirection(0, 0, range) + offset, Color.red);
-                //}
+                foreach (Transform gun in guns) {
+                    gun.LookAt(target);
+                //StartCoroutine(Test(transform.position));
+                    Debug.DrawLine(gun.position, gun.position +transform.TransformDirection(0, 0, range) + offset, Color.red,5);
+                }
                 shootingTime = Time.time + shootInterval;
                 return true;            
         }
         return true;
     }
 
-    IEnumerator Test(Vector3 pos) {
-        yield return new WaitForSeconds(0);
-        gunEffect.transform.position = pos + transform.TransformDirection(0, 0, range);// + offset;
-    }
+    /*IEnumerator Test(Vector3 pos) {
+        gunEffect.SetActive(true);
+        gunEffect.transform.position = pos;
+        showGunEffect = true;
+        scaleValue = Vector3.Normalize(target.position - gunEffect.transform.position); 
+        yield return new WaitForSeconds(0.1f);
+        showGunEffect = false;
+        gunEffect.SetActive(false);
+    }*/
 
     #region Building/Cover Shooting Module    
 
@@ -166,9 +159,9 @@ public class AIFunctions : MonoBehaviour {
         }
 
         Vector3 temp;
-        //float totalMag;
+        float totalMag;
 
-        //totalMag = (target.position - transform.position).magnitude;
+        totalMag = (target.position - transform.position).magnitude;
         temp =  target.position - transform.position;
         temp = Vector3.Normalize(temp); 
         return target.position - (temp * 30); //Scales this to hp?
@@ -264,6 +257,7 @@ public class AIFunctions : MonoBehaviour {
         }
 
         lastHidingPoint = corner;
+        Debug.DrawLine(transform.position, lastAttackPoint, Color.yellow, 10);
         return lastAttackPoint;
     }
 

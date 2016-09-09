@@ -5,7 +5,7 @@ using System.Collections;
 
 public class AI : AIFunctions {
 
-    enum AIStates {
+    public enum AIStates {
         Idle,
         Attacking,
         Retreating,
@@ -13,25 +13,25 @@ public class AI : AIFunctions {
     }
 
     public float reactionTime;
-     AIStates currentState;
+    public AIStates currentState;
     NavMeshAgent agent;
     Vector3 destination;
     bool hasStarted;
     float timer;
 
-    public bool damageTest;
+    //public bool damageTest;
 
     void Start() {
         currentState = AIStates.Idle;
         agent = GetComponent<NavMeshAgent>();
         startingPoint = transform.position;
         eColl = GetComponent<Collider>();
-
-		moveInst = GetComponent<CHAR_Movement> ();
-		weapInst = GetComponent<WPN_WeaponHandler> ();
     }
 
     void Update() {
+        if (showGunEffect) {
+            //gunEffect.transform.position += scaleValue*10;
+        }
         switch (currentState) {
             case AIStates.Idle:
                 
@@ -51,7 +51,6 @@ public class AI : AIFunctions {
                         LookAround();
                     } else {
                         agent.destination = startingPoint;
-					moveInst.AnimateCharacter (agent.speed, 0);
                     }
                 }
                 break;
@@ -68,7 +67,6 @@ public class AI : AIFunctions {
                             currentState = AIStates.Retreating;
                         }
                     }
-                    Debug.Log((target.position - tempObs.transform.position).magnitude);
 
                     if ((target.position - tempObs.transform.position).magnitude > range) {
                         destination = ObstacleHunting();
@@ -78,15 +76,12 @@ public class AI : AIFunctions {
 
                     if ((destination - transform.position).magnitude < 5) {
                         if ((lastAttackPoint - transform.position).magnitude < 5) {
-                            if (Shooting()) {							
+                            if (Shooting()) {
                                transform.LookAt(target);
-							weapInst.AimWeapon (true);
-							AlertOtherTroops();
                             }
                         }
                     } else {
                         agent.destination = destination;
-					moveInst.AnimateCharacter (agent.speed, 0);
                         transform.LookAt(destination);
                         transform.eulerAngles = new Vector3(transform.eulerAngles.x,0, transform.eulerAngles.z);
                     }
@@ -95,7 +90,6 @@ public class AI : AIFunctions {
 
             case AIStates.Retreating:
                 agent.destination = destination;
-			moveInst.AnimateCharacter (agent.speed, 0);
 
                 if ((destination - transform.position).magnitude < 5) {
                     destination = ObstacleHunting();
@@ -109,12 +103,10 @@ public class AI : AIFunctions {
             case AIStates.AttackingInOpen:
                 destination = ObstacleHunting();
                 agent.destination = destination;
-			moveInst.AnimateCharacter (agent.speed, 0);
 
                 if ((destination - transform.position).magnitude < 5) {
                     if (Shooting()) {
                         transform.LookAt(target);
-					weapInst.AimWeapon (true);
                         AlertOtherTroops();
                     }
                 }
