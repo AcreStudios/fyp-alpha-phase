@@ -45,7 +45,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\DEBUG_SceneManager.cs" />
      <Compile Include="Assets\Experiments\AnimatorExperiment.cs" />
      <Compile Include="Assets\Scripts\CAM_CameraRig.cs" />
      <Compile Include="Assets\Scripts\CAM_Flythrough.cs" />
@@ -54,6 +53,7 @@
      <Compile Include="Assets\Scripts\CHAR_Movement.cs" />
      <Compile Include="Assets\Scripts\CHAR_PlayerInput.cs" />
      <Compile Include="Assets\Scripts\CHAR_Ragdoll.cs" />
+     <Compile Include="Assets\Scripts\DEBUG_SceneManager.cs" />
      <Compile Include="Assets\Scripts\EventManager.cs" />
      <Compile Include="Assets\Scripts\IMG_VisionReplacement.cs" />
      <Compile Include="Assets\Scripts\Old\CAM_CameraLook.cs" />
