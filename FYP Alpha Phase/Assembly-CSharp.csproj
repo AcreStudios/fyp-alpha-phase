@@ -74,6 +74,7 @@
      <Compile Include="Assets\Scripts\WPN_WeaponHandler.cs" />
      <Compile Include="Assets\Scripts\WPN_WeaponSystem.cs" />
      <Compile Include="Assets\Scripts\_Dummy.cs" />
+     <Compile Include="Assets\SimpleLengthExperiement.cs" />
      <Compile Include="Assets\ToExport\Scripts\AI.cs" />
      <Compile Include="Assets\ToExport\Scripts\AIFunctions.cs" />
      <Compile Include="Assets\ToExport\Scripts\CivillianAIExperiment.cs" />
