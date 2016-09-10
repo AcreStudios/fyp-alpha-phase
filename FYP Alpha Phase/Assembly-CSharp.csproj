@@ -54,7 +54,6 @@
      <Compile Include="Assets\Scripts\CHAR_PlayerInput.cs" />
      <Compile Include="Assets\Scripts\CHAR_Ragdoll.cs" />
      <Compile Include="Assets\Scripts\DEBUG_SceneManager.cs" />
-     <Compile Include="Assets\Scripts\EventManager.cs" />
      <Compile Include="Assets\Scripts\IMG_VisionReplacement.cs" />
      <Compile Include="Assets\Scripts\Old\CAM_CameraLook.cs" />
      <Compile Include="Assets\Scripts\Old\CAM_CameraShake.cs" />
@@ -75,10 +74,11 @@
      <Compile Include="Assets\Scripts\WPN_WeaponHandler.cs" />
      <Compile Include="Assets\Scripts\WPN_WeaponSystem.cs" />
      <Compile Include="Assets\Scripts\_Dummy.cs" />
-     <Compile Include="Assets\ToExport\AI.cs" />
-     <Compile Include="Assets\ToExport\AIFunctions.cs" />
-     <Compile Include="Assets\ToExport\CivillianAIExperiment.cs" />
-     <Compile Include="Assets\ToExport\PlayerTrigger.cs" />
+     <Compile Include="Assets\ToExport\Scripts\AI.cs" />
+     <Compile Include="Assets\ToExport\Scripts\AIFunctions.cs" />
+     <Compile Include="Assets\ToExport\Scripts\CivillianAIExperiment.cs" />
+     <Compile Include="Assets\ToExport\Scripts\EventManager.cs" />
+     <Compile Include="Assets\ToExport\Scripts\PlayerTrigger.cs" />
      <Compile Include="Assets\_Menu\Scripts\Keyboard Controller Scripts\CreditsMenuControlScript.cs" />
      <Compile Include="Assets\_Menu\Scripts\Keyboard Controller Scripts\LoadingControllerScript.cs" />
      <Compile Include="Assets\_Menu\Scripts\Keyboard Controller Scripts\MainMenuControllerScript.cs" />

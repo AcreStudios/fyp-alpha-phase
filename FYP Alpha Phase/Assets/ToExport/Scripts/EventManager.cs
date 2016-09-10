@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 [ExecuteInEditMode]
 public class EventManager : MonoBehaviour {
@@ -7,15 +8,12 @@ public class EventManager : MonoBehaviour {
     [System.Serializable]
     public struct Events {
         public string eventName;
+        public string missionUI;
         public Triggers eventTriggers;       
         public Triggered results;
     }
 
-    [System.Serializable]
-    public struct Triggered {
-        public GameObject[] spawns;
-        public GameObject[] toDestroy;
-    }
+    
 
     [System.Serializable]
     public struct Triggers {
@@ -25,15 +23,20 @@ public class EventManager : MonoBehaviour {
         public GameObject checkIfDestroyed;
     }
 
+    [System.Serializable]
+    public struct Triggered {
+        public GameObject[] spawns;
+        public GameObject[] toDestroy;
+    }
 
 
     public Events[] gameEventFlow;
+    public Text missionUI;
     public bool ableToEdit;
 
     int currentGameEvent;
     int prevCount;
 
-    // Use this for initialization
     void Start() {
         currentGameEvent = 0;
     }
@@ -53,7 +56,10 @@ public class EventManager : MonoBehaviour {
                 }
             }
         }
-        Debug.Log(currentGameEvent);
+
+        if (missionUI)
+            missionUI.text = gameEventFlow[currentGameEvent].missionUI;
+
         if (currentGameEvent < gameEventFlow.Length) {
             if (gameEventFlow[currentGameEvent].eventTriggers.triggerRadius > 0 || gameEventFlow[currentGameEvent].eventTriggers.toCalculate) {
                 Collider[] temp;
