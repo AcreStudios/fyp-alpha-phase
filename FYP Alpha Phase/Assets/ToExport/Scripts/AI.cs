@@ -26,6 +26,8 @@ public class AI : AIFunctions {
         agent = GetComponent<NavMeshAgent>();
         startingPoint = transform.position;
         eColl = GetComponent<Collider>();
+
+        animator = transform.GetChild(0).GetComponent<Animator>();
     }
 
     void Update() {
@@ -34,8 +36,8 @@ public class AI : AIFunctions {
         }
         switch (currentState) {
             case AIStates.Idle:
-                
-                if (target != null ) {
+
+                if (target != null) {
                     if (!hasStarted) {
                         timer = Time.time + reactionTime;
                         hasStarted = true;
@@ -49,6 +51,7 @@ public class AI : AIFunctions {
                     hasStarted = false;
                     if ((startingPoint - transform.position).magnitude < 5) {
                         LookAround();
+                        animator.SetInteger("TreeState", 0);
                     } else {
                         agent.destination = startingPoint;
                     }
@@ -74,43 +77,48 @@ public class AI : AIFunctions {
                     }
                     if (tempObs != null)
 
-                    if ((destination - transform.position).magnitude < 5) {
-                        if ((lastAttackPoint - transform.position).magnitude < 5) {
-                            if (Shooting()) {
-                               transform.LookAt(target);
+                        if ((destination - transform.position).magnitude < 5) {
+                            if ((lastAttackPoint - transform.position).magnitude < 5) {
+                                if (Shooting()) {
+                                    transform.LookAt(target);
+                                }
                             }
+                        } else {
+                            agent.destination = destination;
+                            animator.SetInteger("TreeState", 1);
+                            transform.LookAt(destination);
+                            transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0, transform.eulerAngles.z);
                         }
-                    } else {
-                        agent.destination = destination;
-                        transform.LookAt(destination);
-                        transform.eulerAngles = new Vector3(transform.eulerAngles.x,0, transform.eulerAngles.z);
-                    }
-                }              
+                }
                 break;
 
             case AIStates.Retreating:
-                agent.destination = destination;
-
+                
                 if ((destination - transform.position).magnitude < 5) {
                     destination = ObstacleHunting();
                     AlertOtherTroops();
                     if ((destination - transform.position).magnitude < 5) {
                         currentState = AIStates.Attacking;
                     }
+                } else {
+                    agent.destination = destination;
+                    animator.SetInteger("TreeState", 1);
                 }
                 break;
 
             case AIStates.AttackingInOpen:
-                destination = ObstacleHunting();
-                agent.destination = destination;
-
+                
                 if ((destination - transform.position).magnitude < 5) {
                     if (Shooting()) {
                         transform.LookAt(target);
                         AlertOtherTroops();
                     }
+                } else {
+                    destination = ObstacleHunting();
+                    agent.destination = destination;
+                    animator.SetInteger("TreeState", 1);
                 }
-                    if (tempObs != null) {
+                if (tempObs != null) {
                     currentState = AIStates.Attacking;
                 }
                 break;
@@ -118,8 +126,8 @@ public class AI : AIFunctions {
     }
 
     public override void DamageRecieved(float damage) {
-        if (currentState == AIStates.Attacking || currentState == AIStates.AttackingInOpen) 
-        StartCoroutine(ChangeDestination());
+        if (currentState == AIStates.Attacking || currentState == AIStates.AttackingInOpen)
+            StartCoroutine(ChangeDestination());
         base.DamageRecieved(damage);
     }
 
