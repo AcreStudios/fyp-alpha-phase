@@ -25,7 +25,7 @@ public class AIFunctions : MonoBehaviour {
     protected Vector3 startingPoint;
     protected bool showGunEffect;
     protected Vector3 scaleValue;
-
+    protected Animator animator;
 
     #region Building/Cover Shooting Module Variables
     protected Collider tempObs;
@@ -111,18 +111,19 @@ public class AIFunctions : MonoBehaviour {
     }
 
     public bool Shooting() {
+        animator.SetInteger("TreeState", 2);
         if (Time.time > shootingTime) {
-                Vector3 offset;
-                AlertOtherTroops();
-                
-                offset = new Vector3(Random.Range(-gunSprayValue, gunSprayValue), Random.Range(-gunSprayValue, gunSprayValue), 0);
-                foreach (Transform gun in guns) {
-                    gun.LookAt(target);
+            Vector3 offset;
+            AlertOtherTroops();
+
+            offset = new Vector3(Random.Range(-gunSprayValue, gunSprayValue), Random.Range(-gunSprayValue, gunSprayValue), 0);
+            foreach (Transform gun in guns) {
+                gun.LookAt(target);
                 //StartCoroutine(Test(transform.position));
-                    Debug.DrawLine(gun.position, gun.position +transform.TransformDirection(0, 0, range) + offset, Color.red,5);
-                }
-                shootingTime = Time.time + shootInterval;
-                return true;            
+                Debug.DrawLine(gun.position, gun.position + transform.TransformDirection(0, 0, range) + offset, Color.red, 5);
+            }
+            shootingTime = Time.time + shootInterval;
+            return true;
         }
         return true;
     }
@@ -144,7 +145,7 @@ public class AIFunctions : MonoBehaviour {
         float dist = Mathf.Infinity;
 
         tempObs = null;
-        obstacles = Physics.OverlapSphere(target.position, range/(1.5f));
+        obstacles = Physics.OverlapSphere(target.position, range / (1.5f));
 
         foreach (Collider obstacle in obstacles) {
             if (obstacle.transform.tag == "Obstacles")
@@ -162,8 +163,8 @@ public class AIFunctions : MonoBehaviour {
         float totalMag;
 
         totalMag = (target.position - transform.position).magnitude;
-        temp =  target.position - transform.position;
-        temp = Vector3.Normalize(temp); 
+        temp = target.position - transform.position;
+        temp = Vector3.Normalize(temp);
         return target.position - (temp * 30); //Scales this to hp?
     }
 
@@ -197,8 +198,8 @@ public class AIFunctions : MonoBehaviour {
 
         if (playerTouchPoint[firstIndex] - obsColl.bounds.center[firstIndex] > 0) {
             if (temp < 0) {
-                otherEnd[firstIndex] = obsColl.bounds.min[firstIndex]; 
-                lastHidingPoint = otherEnd; 
+                otherEnd[firstIndex] = obsColl.bounds.min[firstIndex];
+                lastHidingPoint = otherEnd;
                 return SmoothenVector(otherEnd, secondIndex, obsColl.bounds.center);
             } else {
                 finalPoint[firstIndex] = obsColl.bounds.max[firstIndex];
