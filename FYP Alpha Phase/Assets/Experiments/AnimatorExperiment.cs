@@ -12,5 +12,9 @@ public class AnimatorExperiment : MonoBehaviour {
 	
 	void Update () {
         anim.SetInteger("TreeState", currentState);
+
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Base.talking")) {
+            Debug.Log("Working");
+        }
 	}
 }
