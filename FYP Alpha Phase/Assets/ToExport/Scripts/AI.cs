@@ -7,6 +7,7 @@ public class AI : AIFunctions {
 
     public enum AIStates {
         Idle,
+        Patrol,
         Attacking,
         Retreating,
         AttackingInOpen
@@ -14,6 +15,9 @@ public class AI : AIFunctions {
 
     public float reactionTime;
     public AIStates currentState;
+    AIStates defaultState;
+
+    PatrolModule patrolMod;
     NavMeshAgent agent;
     Vector3 destination;
     bool hasStarted;
@@ -22,12 +26,26 @@ public class AI : AIFunctions {
     //public bool damageTest;
 
     void Start() {
-        currentState = AIStates.Idle;
+        
         agent = GetComponent<NavMeshAgent>();
         startingPoint = transform.position;
         eColl = GetComponent<Collider>();
 
         animator = transform.GetChild(0).GetComponent<Animator>();
+
+        if ((patrolMod = GetComponent<PatrolModule>()) != null) {
+            if (patrolMod.patrolLocations.Length >0) {
+                defaultState = AIStates.Patrol;
+            } else {
+                defaultState = AIStates.Idle;
+            }
+        } else {
+            defaultState = AIStates.Idle;
+        }
+
+        destination = transform.position;
+        currentState = defaultState;
+
     }
 
     void Update() {
@@ -44,17 +62,33 @@ public class AI : AIFunctions {
                     }
                     if (Time.time > timer) {
                         AlertOtherTroops();
+                        //ObstacleHunting();
                         currentState = AIStates.Attacking;
                         hasStarted = false;
                     }
                 } else {
                     hasStarted = false;
-                    if ((startingPoint - transform.position).magnitude < 5) {
+                    if ((startingPoint - transform.position).magnitude < 1) {
                         LookAround();
                         animator.SetInteger("TreeState", 0);
                     } else {
                         agent.destination = startingPoint;
                     }
+                }
+                break;
+
+            case AIStates.Patrol:
+                if ((patrolMod.patrolLocations[patrolMod.currentLocation] - transform.position).magnitude < 1) {
+                    if (patrolMod.currentLocation >= patrolMod.patrolLocations.Length - 1) {
+                        patrolMod.valueToAdd = -1;
+                    }
+                    else if (patrolMod.currentLocation <= 0) {
+                        patrolMod.valueToAdd = 1;
+                    }
+
+                    patrolMod.currentLocation += patrolMod.valueToAdd;
+                } else {
+                    agent.destination = patrolMod.patrolLocations[patrolMod.currentLocation];
                 }
                 break;
 
@@ -75,10 +109,11 @@ public class AI : AIFunctions {
                         destination = ObstacleHunting();
                         currentState = AIStates.Retreating;
                     }
+
                     if (tempObs != null)
 
-                        if ((destination - transform.position).magnitude < 5) {
-                            if ((lastAttackPoint - transform.position).magnitude < 5) {
+                        if ((destination - transform.position).magnitude < 3) {
+                            if ((lastAttackPoint - transform.position).magnitude < 3) {
                                 if (Shooting()) {
                                     transform.LookAt(target);
                                 }
@@ -94,10 +129,10 @@ public class AI : AIFunctions {
 
             case AIStates.Retreating:
                 
-                if ((destination - transform.position).magnitude < 5) {
+                if ((destination - transform.position).magnitude < 1) {
                     destination = ObstacleHunting();
                     AlertOtherTroops();
-                    if ((destination - transform.position).magnitude < 5) {
+                    if ((destination - transform.position).magnitude < 1) {
                         currentState = AIStates.Attacking;
                     }
                 } else {
@@ -107,16 +142,15 @@ public class AI : AIFunctions {
                 break;
 
             case AIStates.AttackingInOpen:
-                
-                if ((destination - transform.position).magnitude < 5) {
+                destination = ObstacleHunting();
+                agent.destination = destination;
+                animator.SetInteger("TreeState", 1);
+
+                if ((destination - transform.position).magnitude < 1) {
                     if (Shooting()) {
                         transform.LookAt(target);
                         AlertOtherTroops();
                     }
-                } else {
-                    destination = ObstacleHunting();
-                    agent.destination = destination;
-                    animator.SetInteger("TreeState", 1);
                 }
                 if (tempObs != null) {
                     currentState = AIStates.Attacking;

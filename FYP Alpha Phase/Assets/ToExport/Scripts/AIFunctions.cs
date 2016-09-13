@@ -145,14 +145,14 @@ public class AIFunctions : MonoBehaviour {
         float dist = Mathf.Infinity;
 
         tempObs = null;
-        obstacles = Physics.OverlapSphere(target.position, range / (1.5f));
-
+        obstacles = Physics.OverlapSphere(target.position, range);
         foreach (Collider obstacle in obstacles) {
-            if (obstacle.transform.tag == "Obstacles")
+            if (obstacle.transform.tag == "Obstacles") {
                 if ((obstacle.transform.position - transform.position).magnitude < dist) {
                     dist = (obstacle.transform.position - transform.position).magnitude;
                     tempObs = obstacle;
                 }
+            }
         }
 
         if (tempObs != null) {

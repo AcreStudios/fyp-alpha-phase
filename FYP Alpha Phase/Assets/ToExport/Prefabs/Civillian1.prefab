@@ -366,6 +366,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000013822964242}
+  - 195: {fileID: 195000011991312200}
+  - 114: {fileID: 114000013695782282}
   m_Layer: 0
   m_Name: Civillian1
   m_TagString: Untagged
@@ -848,7 +850,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012890927692}
   - 95: {fileID: 95000012436041810}
-  - 114: {fileID: 114000013781902636}
   m_Layer: 0
   m_Name: Male_Model
   m_TagString: Untagged
@@ -1851,7 +1852,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013104087064}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.0241065, y: -0.8404006, z: 0.028572083}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2051,7 +2052,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011249523772}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.8158937, y: 0.8404006, z: 32.46143}
+  m_LocalPosition: {x: 0, y: -0.02, z: 5.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -2184,18 +2185,20 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114000013781902636
+--- !u!114 &114000013695782282
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000013104087064}
+  m_GameObject: {fileID: 1000011249523772}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b8863dc609af574ab5123efbd7989f1, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e58103b0583bed4fbbc9148fe387221, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: 0
+  detectionRadius: 50
+  target: {fileID: 0}
 --- !u!137 &137000010967210044
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -2571,3 +2574,23 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.07657503, y: 0.50135934, z: 0.0839048}
     m_Extent: {x: 0.1956146, y: 0.15617132, z: 0.18767208}
   m_DirtyAABB: 0
+--- !u!195 &195000011991312200
+NavMeshAgent:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011249523772}
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

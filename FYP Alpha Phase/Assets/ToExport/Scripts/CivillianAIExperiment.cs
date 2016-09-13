@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-
+[RequireComponent(typeof(NavMeshAgent))]
 public class CivillianAIExperiment : MonoBehaviour {
 
     public enum CivillianStates {
@@ -71,7 +71,6 @@ public class CivillianAIExperiment : MonoBehaviour {
 
         temp = Physics.OverlapSphere(transform.position, detectionRadius);
 
-        if (temp.Length > 0) {
 
             foreach (Collider obs in temp) {
                 if (obs.transform.tag == "Obstacles") {
@@ -84,6 +83,7 @@ public class CivillianAIExperiment : MonoBehaviour {
                     }
                 }
             }
+        if (placeToHide) {
             lastObs = placeToHide;
             return placeToHide.ClosestPointOnBounds(target.position) + ((placeToHide.bounds.center - placeToHide.ClosestPointOnBounds(target.position)) * 2);
         }

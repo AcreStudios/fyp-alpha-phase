@@ -79,6 +79,8 @@
      <Compile Include="Assets\ToExport\Scripts\AIFunctions.cs" />
      <Compile Include="Assets\ToExport\Scripts\CivillianAIExperiment.cs" />
      <Compile Include="Assets\ToExport\Scripts\EventManager.cs" />
+     <Compile Include="Assets\ToExport\Scripts\PatrolEditor.cs" />
+     <Compile Include="Assets\ToExport\Scripts\PatrolModule.cs" />
      <Compile Include="Assets\ToExport\Scripts\PlayerTrigger.cs" />
      <Compile Include="Assets\_Menu\Scripts\Keyboard Controller Scripts\CreditsMenuControlScript.cs" />
      <Compile Include="Assets\_Menu\Scripts\Keyboard Controller Scripts\LoadingControllerScript.cs" />
